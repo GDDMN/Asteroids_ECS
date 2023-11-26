@@ -1,0 +1,6 @@
+﻿
+internal struct DirectionComponent
+{
+
+}
+

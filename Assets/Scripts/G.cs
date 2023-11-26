@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Leopotam.Ecs;
 using Voody.UniLeo;
+using Asteroids.ECS.Systems;
 
 public class G : MonoBehaviour
 {
@@ -15,6 +14,11 @@ public class G : MonoBehaviour
     systems = new EcsSystems(world);
 
     systems.ConvertScene();
+
+    AddIjections();
+    AddOneFrame();
+    AddSystems();
+
     systems.Init();
   }
 
