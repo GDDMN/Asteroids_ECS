@@ -21,14 +21,29 @@ namespace Asteroids.ECS.Systems
         ref var directionComponent = ref ships.Get3(item);
 
         ref var direction = ref directionComponent.Direction;
+        ref var rotation = ref directionComponent.Rotation;
         ref var transform = ref modelComponent.ModelTransform;
 
         ref var characterController = ref shipEntity.CharacterController;
         ref var speed = ref shipEntity.Speed;
+        ref var rotationSpeed = ref shipEntity.RotationSpeed;
 
-        var rawDirection = (transform.right * direction.x) + (transform.up * direction.y);
-        characterController.Move(rawDirection * speed * Time.deltaTime);
+        var rawDirection = (transform.up * direction.y);
+        var rawRotation = rotation * rotationSpeed;
+
+        ForwardMove(rawDirection, speed, characterController);
+        Rotation(transform, rawRotation);
       }
+    }
+
+    private void ForwardMove(Vector3 direction, float speed, CharacterController characterController)
+    {
+      characterController.Move(direction * speed * Time.deltaTime);
+    }
+
+    private void Rotation(Transform transform, float rotationSpeed)
+    {
+      transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
     }
   }
 }

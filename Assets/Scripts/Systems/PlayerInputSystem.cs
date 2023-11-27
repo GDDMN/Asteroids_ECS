@@ -8,8 +8,8 @@ namespace Asteroids.ECS.Systems
   {
     private readonly EcsFilter<PlayerTag, DirectionComponent> _directionFilter = null;
 
-    private float forwardMove;
-    private float rotation;
+    private float _forwardMove;
+    private float _rotation;
 
     public void Run()
     {
@@ -19,16 +19,17 @@ namespace Asteroids.ECS.Systems
       {
         ref var directionComponent = ref _directionFilter.Get2(item);
         ref var direction = ref directionComponent.Direction;
+        ref var rotation = ref directionComponent.Rotation;
 
-        direction.x = rotation;
-        direction.y = forwardMove;
+        direction.y = _forwardMove;
+        rotation = _rotation;
       }
     }
 
     private void SetDirection()
     {
-      rotation = Input.GetAxis("Horizontal");
-      forwardMove = Input.GetAxis("Vertical");
+      _rotation = Input.GetAxis("Horizontal");
+      _forwardMove = Input.GetAxis("Vertical");
     }
   }
 }

@@ -6,4 +6,5 @@ public struct ShipEntity
 {
   public CharacterController CharacterController;
   public float Speed;
+  public float RotationSpeed;
 }
