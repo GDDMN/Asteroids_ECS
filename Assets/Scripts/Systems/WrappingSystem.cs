@@ -9,6 +9,7 @@ namespace Asteroids.ECS.Systems
     private readonly EcsFilter<ModelComponent> _wrappedObjects = null;
   
     private Camera camera;
+    
   
     public void Init()
     {
@@ -23,20 +24,24 @@ namespace Asteroids.ECS.Systems
   
         Vector2 moveAdjustment = Vector2.zero;
         Vector2 viewportPosition = camera.WorldToViewportPoint(transform.position);
-  
-        SetAdjustment(ref moveAdjustment, ref viewportPosition);
+        float wrappedRelocateDistance = transform.localScale.x;
+
+        SetAdjustment(ref moveAdjustment, ref viewportPosition, wrappedRelocateDistance);
         SetObjectPosition(transform, moveAdjustment, viewportPosition);
       }
     }
   
-    private void SetAdjustment(ref Vector2 adjustment, ref Vector2 viewportPos)
+    private void SetAdjustment(ref Vector2 adjustment, ref Vector2 viewportPos, float weappedDistance)
     {
       if (viewportPos.x < 0)
         adjustment.x += 1;
+
       else if (viewportPos.x > 1)
         adjustment.x -= 1;
+
       else if (viewportPos.y < 0)
         adjustment.y += 1;
+
       else if (viewportPos.y > 1)
         adjustment.y -= 1;
     }

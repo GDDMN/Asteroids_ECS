@@ -5,6 +5,6 @@ using System;
 public struct MovementComponent
 {
   public float Speed;
-  [HideInInspector]public Vector2 Direction;
+  public Vector2 Direction;
 }
 

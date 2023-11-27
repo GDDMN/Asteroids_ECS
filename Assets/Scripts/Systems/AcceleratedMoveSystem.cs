@@ -54,7 +54,6 @@ namespace Asteroids.ECS.Systems
     }
 
   }
-
 }
 
 

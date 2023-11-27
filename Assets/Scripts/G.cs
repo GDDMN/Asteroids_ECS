@@ -32,7 +32,8 @@ public class G : MonoBehaviour
     systems.Add(new PlayerInputSystem()).
             Add(new AcceleratedMoveSystem()).
             Add(new RotationSystem()).
-            Add(new WrappingSystem());
+            Add(new WrappingSystem()).
+            Add(new ConstantMoveSystem());
   }
 
   private void AddOneFrame()
