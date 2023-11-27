@@ -1,7 +1,9 @@
+using UnityEngine;
+using System;
 
-internal struct ShipEntity
+[Serializable]
+public struct ShipEntity
 {
+  public CharacterController CharacterController;
   public float Speed;
 }
-
-internal struct PlayerTag { }

@@ -29,7 +29,8 @@ public class G : MonoBehaviour
 
   private void AddSystems()
   {
-
+    systems.Add(new PlayerInputSystem()).
+            Add(new ShipMoveSystem());
   }
 
   private void AddOneFrame()
