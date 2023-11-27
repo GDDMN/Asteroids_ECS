@@ -57,8 +57,7 @@ namespace Asteroids.ECS.Systems
 
     private void SlowDown(float secondsToStop)
     {
-      if(acceleration.x != Vector2.zero.x || acceleration.y != Vector2.zero.y)
-        acceleration += -acceleration * (Time.deltaTime / secondsToStop);
+      acceleration += -acceleration * (Time.deltaTime / secondsToStop);
     }
 
     private void Rotation(Transform transform, float rotationSpeed)

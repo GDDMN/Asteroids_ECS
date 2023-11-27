@@ -31,6 +31,11 @@ namespace Asteroids.ECS.Systems
       _rotation = Input.GetAxis("Horizontal");
       _forwardMove = Input.GetAxis("Vertical");
     }
+
+    private void Shootig()
+    {
+
+    }
   }
 }
 
