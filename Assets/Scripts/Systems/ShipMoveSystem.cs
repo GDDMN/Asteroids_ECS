@@ -12,6 +12,8 @@ namespace Asteroids.ECS.Systems
     private readonly EcsWorld _wordl = null;
     private readonly EcsFilter<ModelComponent, ShipEntity, DirectionComponent> ships = null;
 
+    private Vector2 acceleration;
+
     public void Run()
     {
       foreach(var item in ships)
@@ -25,20 +27,38 @@ namespace Asteroids.ECS.Systems
         ref var transform = ref modelComponent.ModelTransform;
 
         ref var characterController = ref shipEntity.CharacterController;
-        ref var speed = ref shipEntity.Speed;
         ref var rotationSpeed = ref shipEntity.RotationSpeed;
+        ref var accelerationPerSeconds = ref shipEntity.AccelerationPerSeconds;
+        ref var maxSpeed = ref shipEntity.MaxSpeed;
+        ref var secondsToStop = ref shipEntity.SecondsToStop;
 
-        var rawDirection = (transform.up * direction.y);
         var rawRotation = rotation * rotationSpeed;
+        Vector2 rawDirection = (transform.right * direction.x) + (transform.up * direction.y);
 
-        ForwardMove(rawDirection, speed, characterController);
+        if (direction.y == 0)
+          SlowDown(secondsToStop); 
+          
+        ForwardMove(rawDirection, accelerationPerSeconds, maxSpeed, characterController);        
         Rotation(transform, rawRotation);
       }
     }
 
-    private void ForwardMove(Vector3 direction, float speed, CharacterController characterController)
+    private void ForwardMove(Vector2 direction, float accelerationPerSec, float maxSpeed, CharacterController characterController)
     {
-      characterController.Move(direction * speed * Time.deltaTime);
+      Accelerate(direction, accelerationPerSec, maxSpeed);
+      characterController.Move(acceleration);
+    }
+
+    private void Accelerate(Vector2 direction, float accelerationPerSeconds, float maxSpeed)
+    {
+      acceleration += direction * (accelerationPerSeconds * Time.deltaTime);
+      acceleration = Vector2.ClampMagnitude(acceleration, maxSpeed);
+    }
+
+    private void SlowDown(float secondsToStop)
+    {
+      if(acceleration.x != Vector2.zero.x || acceleration.y != Vector2.zero.y)
+        acceleration += -acceleration * (Time.deltaTime / secondsToStop);
     }
 
     private void Rotation(Transform transform, float rotationSpeed)

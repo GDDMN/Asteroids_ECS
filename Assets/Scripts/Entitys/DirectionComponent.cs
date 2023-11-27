@@ -4,7 +4,7 @@ using System;
 [Serializable]
 public struct DirectionComponent
 {
-  public Vector3 Direction;
+  public Vector2 Direction;
   public float Rotation;
 }
 
