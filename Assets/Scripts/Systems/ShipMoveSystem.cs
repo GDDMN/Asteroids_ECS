@@ -63,8 +63,10 @@ namespace Asteroids.ECS.Systems
 
     private void Rotation(Transform transform, float rotationSpeed)
     {
-      transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+      transform.Rotate(-Vector3.forward, rotationSpeed * Time.deltaTime);
     }
+
+    
   }
 }
 

@@ -160,10 +160,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     CharacterController: {fileID: 150355615}
-    AccelerationPerSeconds: 0.3
-    SecondsToStop: 0.5
-    MaxSpeed: 2
-    RotationSpeed: 60
+    AccelerationPerSeconds: 0.03
+    SecondsToStop: 1
+    MaxSpeed: 0.15
+    RotationSpeed: 180
 --- !u!114 &150355608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    Direction: {x: 0, y: 0, z: 0}
+    Direction: {x: 0, y: 0}
     Rotation: 0
 --- !u!114 &150355614
 MonoBehaviour:
@@ -451,7 +451,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
