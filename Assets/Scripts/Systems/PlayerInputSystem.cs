@@ -6,35 +6,32 @@ namespace Asteroids.ECS.Systems
 {
   sealed class PlayerInputSystem : IEcsRunSystem
   {
-    private readonly EcsFilter<PlayerTag, DirectionComponent> _directionFilter = null;
+    private readonly EcsFilter<PlayerTag, RotationComponent, PlayerMovementComponent> _playerFilter = null;
 
     private float _forwardMove;
-    private float _rotation;
+    private float _angle;
 
     public void Run()
     {
       SetDirection();
 
-      foreach(var item in _directionFilter)
+      foreach(var item in _playerFilter)
       {
-        ref var directionComponent = ref _directionFilter.Get2(item);
-        ref var direction = ref directionComponent.Direction;
-        ref var rotation = ref directionComponent.Rotation;
+        ref RotationComponent rotationComponent = ref _playerFilter.Get2(item);
+        ref PlayerMovementComponent movementComponent = ref _playerFilter.Get3(item);
+
+        ref var direction = ref movementComponent.Direction;
+        ref var angle = ref rotationComponent.Angle;
 
         direction.y = _forwardMove;
-        rotation = _rotation;
+        angle = _angle;
       }
     }
 
     private void SetDirection()
     {
-      _rotation = Input.GetAxis("Horizontal");
+      _angle = Input.GetAxis("Horizontal");
       _forwardMove = Input.GetAxis("Vertical");
-    }
-
-    private void Shootig()
-    {
-
     }
   }
 }

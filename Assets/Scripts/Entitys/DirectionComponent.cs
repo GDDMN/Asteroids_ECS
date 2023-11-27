@@ -5,6 +5,5 @@ using System;
 public struct DirectionComponent
 {
   public Vector2 Direction;
-  public float Rotation;
 }
 

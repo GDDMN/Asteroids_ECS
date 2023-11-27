@@ -30,7 +30,8 @@ public class G : MonoBehaviour
   private void AddSystems()
   {
     systems.Add(new PlayerInputSystem()).
-            Add(new ShipMoveSystem()).
+            Add(new AcceleratedMoveSystem()).
+            Add(new RotationSystem()).
             Add(new WrappingSystem());
   }
 
@@ -41,7 +42,6 @@ public class G : MonoBehaviour
 
   private void Update()
   {
-
     systems.Run();
   }
 

@@ -1,40 +1,50 @@
 using UnityEngine;
 using Leopotam.Ecs;
 
-public class WrappingSystem : IEcsRunSystem
+namespace Asteroids.ECS.Systems
 {
-  private readonly EcsWorld _world = null;
-  private readonly EcsFilter<ModelComponent, PlayerTag> wrappedObjects = null;
-
-  public void Run()
+  public class WrappingSystem : IEcsRunSystem, IEcsInitSystem
   {
-    foreach(var item in wrappedObjects)
+    private readonly EcsWorld _world = null;
+    private readonly EcsFilter<ModelComponent> _wrappedObjects = null;
+  
+    private Camera camera;
+  
+    public void Init()
     {
-      ref var transform = ref wrappedObjects.Get1(item).ModelTransform;
-
-      Vector2 moveAdjustment = Vector2.zero;
-      Vector2 viewportPosition = Camera.main.WorldToViewportPoint(transform.position);
-
-      SetAdjustment(ref moveAdjustment, ref viewportPosition);
-      SetObjectPosition(transform, moveAdjustment, viewportPosition);
+      camera = Camera.main;
     }
-  }
-
-  private void SetAdjustment(ref Vector2 adjustment, ref Vector2 viewportPos)
-  {
-    if (viewportPos.x < 0)
-      adjustment.x += 1;
-    else if (viewportPos.x > 1)
-      adjustment.x -= 1;
-    else if (viewportPos.y < 0)
-      adjustment.y += 1;
-    else if (viewportPos.y > 1)
-      adjustment.y -= 1;
-  }
-
-  private void SetObjectPosition(Transform transform, Vector2 adjustment, Vector2 viewportPos)
-  {
-    Vector2 position = Camera.main.ViewportToWorldPoint(viewportPos + adjustment);
-    transform.position = position;
+  
+    public void Run()
+    {
+      foreach (var item in _wrappedObjects)
+      {
+        ref var transform = ref _wrappedObjects.Get1(item).ModelTransform;
+  
+        Vector2 moveAdjustment = Vector2.zero;
+        Vector2 viewportPosition = camera.WorldToViewportPoint(transform.position);
+  
+        SetAdjustment(ref moveAdjustment, ref viewportPosition);
+        SetObjectPosition(transform, moveAdjustment, viewportPosition);
+      }
+    }
+  
+    private void SetAdjustment(ref Vector2 adjustment, ref Vector2 viewportPos)
+    {
+      if (viewportPos.x < 0)
+        adjustment.x += 1;
+      else if (viewportPos.x > 1)
+        adjustment.x -= 1;
+      else if (viewportPos.y < 0)
+        adjustment.y += 1;
+      else if (viewportPos.y > 1)
+        adjustment.y -= 1;
+    }
+  
+    private void SetObjectPosition(Transform transform, Vector2 adjustment, Vector2 viewportPos)
+    {
+      Vector2 position = camera.ViewportToWorldPoint(viewportPos + adjustment);
+      transform.position = position;
+    }
   }
 }

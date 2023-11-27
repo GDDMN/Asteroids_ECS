@@ -5,5 +5,4 @@ using System;
 public struct ModelComponent 
 {
   public Transform ModelTransform;
-
 }
