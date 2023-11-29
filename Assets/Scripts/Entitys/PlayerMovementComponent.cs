@@ -4,7 +4,7 @@ using System;
 [Serializable]
 public struct PlayerMovementComponent
 {
-  public CharacterController CharacterController;
+  public Rigidbody2D Rigidbody2D;
   [HideInInspector] public Vector2 Direction;
 }
 

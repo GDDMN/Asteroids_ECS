@@ -21,7 +21,7 @@ namespace Asteroids.ECS.Systems
         ref Transform transform = ref modelComponent.ModelTransform;
 
         ref Vector2 direction = ref movementComponent.Direction;
-        ref CharacterController characterController = ref movementComponent.CharacterController;
+        ref Rigidbody2D rigidbody = ref movementComponent.Rigidbody2D;
 
         ref float accelerationPerSeconds = ref accelerateComponent.AccelerationPerSeconds;
         ref float maxSpeed = ref accelerateComponent.MaxSpeed;
@@ -32,14 +32,15 @@ namespace Asteroids.ECS.Systems
         if (direction.y == 0)
           SlowDown(secondsToStop);
 
-        ForwardMove(rawDirection, accelerationPerSeconds, maxSpeed, characterController);
+        ForwardMove(rawDirection, accelerationPerSeconds, maxSpeed, ref rigidbody);
       }
     }
 
-    private void ForwardMove(Vector2 direction, float accelerationPerSec, float maxSpeed, CharacterController characterController)
+    private void ForwardMove(Vector2 direction, float accelerationPerSec, float maxSpeed, ref Rigidbody2D rigidbody)
     {
       Accelerate(direction, accelerationPerSec, maxSpeed);
-      characterController.Move(acceleration);
+      Debug.Log(rigidbody.velocity + ": " + acceleration);
+      rigidbody.velocity = acceleration;
     }
 
     private void Accelerate(Vector2 direction, float accelerationPerSeconds, float maxSpeed)
