@@ -3,7 +3,7 @@ using Leopotam.Ecs;
 
 namespace Asteroids.ECS.Systems
 {
-  public class WrappingSystem : IEcsRunSystem, IEcsInitSystem
+  sealed class WrappingSystem : IEcsRunSystem, IEcsInitSystem
   {
     private readonly EcsWorld _world = null;
     private readonly EcsFilter<ModelComponent> _wrappedObjects = null;
@@ -52,4 +52,5 @@ namespace Asteroids.ECS.Systems
       transform.position = position;
     }
   }
+
 }
