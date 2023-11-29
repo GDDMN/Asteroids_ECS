@@ -590,7 +590,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaaabba67aaba06408a411b24a531157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AscteroidsPool: {fileID: 0}
+  value:
+    AsteroidsPool: {fileID: 1998805293}
+    AsteroidPrefab: {fileID: 966690750822574156, guid: f8a4f5b588d2ff14990e7ef7f00253bf, type: 3}
 --- !u!114 &1136159497
 MonoBehaviour:
   m_ObjectHideFlags: 0

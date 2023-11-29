@@ -4,5 +4,6 @@ using UnityEngine;
 [Serializable]
 public struct AsteroidsSpawnerComponent
 {
-  
+  public Transform AsteroidsPool;
+  public GameObject AsteroidPrefab;
 }
