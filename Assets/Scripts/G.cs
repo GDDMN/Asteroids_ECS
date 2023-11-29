@@ -33,10 +33,12 @@ public class G : MonoBehaviour
             Add(new AcceleratedMoveSystem()).
             Add(new RotationSystem()).
             Add(new WrappingSystem()).
+            Add(new ProjectileLifetimeSystem()).
             Add(new ConstantMoveSystem()).
             Add(new AsteroidSpawnSystem()).
             Add(new PlayerShootSetEvent()).
             Add(new ShootSystem());
+
   }
 
   private void AddOneFrame()

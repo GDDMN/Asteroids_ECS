@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3247619}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,8 @@ GameObject:
   - component: {fileID: 150355613}
   - component: {fileID: 150355619}
   - component: {fileID: 150355620}
-  m_Layer: 0
+  - component: {fileID: 150355621}
+  m_Layer: 7
   m_Name: Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -384,6 +385,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!70 &150355621
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150355606}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.017, y: 0.06}
+  m_Size: {x: 0.34, y: 0.64}
+  m_Direction: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,7 +728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1719806714}
   - component: {fileID: 1719806715}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShipVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -39,7 +39,6 @@ namespace Asteroids.ECS.Systems
     private void ForwardMove(Vector2 direction, float accelerationPerSec, float maxSpeed, ref Rigidbody2D rigidbody)
     {
       Accelerate(direction, accelerationPerSec, maxSpeed);
-      Debug.Log(rigidbody.velocity + ": " + acceleration);
       rigidbody.velocity = acceleration;
     }
 

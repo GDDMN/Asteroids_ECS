@@ -21,8 +21,9 @@ namespace Asteroids.ECS.Systems
         ref Transform transform = ref modelComponent.ModelTransform;
         ref float speed = ref movementComponent.Speed;
         ref Vector2 direction = ref movementComponent.Direction;
-
-        MoveForward(transform, speed, direction);
+        
+        if(transform != null)
+          MoveForward(transform, speed, direction);
       }
     }
 

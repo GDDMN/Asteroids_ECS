@@ -23,15 +23,20 @@ namespace Asteroids.ECS.Systems
         ref var transform = ref _wrappedObjects.Get1(item).ModelTransform;
   
         Vector2 moveAdjustment = Vector2.zero;
-        Vector2 viewportPosition = camera.WorldToViewportPoint(transform.position);
-        float wrappedRelocateDistance = transform.localScale.x;
+        Vector2 viewportPosition = Vector2.zero;
 
-        SetAdjustment(ref moveAdjustment, ref viewportPosition, wrappedRelocateDistance);
-        SetObjectPosition(transform, moveAdjustment, viewportPosition);
+        if (transform != null)
+          viewportPosition = camera.WorldToViewportPoint(transform.position);
+        
+
+        SetAdjustment(ref moveAdjustment, ref viewportPosition);
+        
+        if(transform != null)
+          SetObjectPosition(transform, moveAdjustment, viewportPosition);
       }
     }
   
-    private void SetAdjustment(ref Vector2 adjustment, ref Vector2 viewportPos, float weappedDistance)
+    private void SetAdjustment(ref Vector2 adjustment, ref Vector2 viewportPos)
     {
       if (viewportPos.x < 0)
         adjustment.x += 1;

@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 2229134801931509102}
   - component: {fileID: 2229134801931509103}
   - component: {fileID: 2229134801931509100}
-  m_Layer: 0
+  - component: {fileID: 6532844247739490472}
+  m_Layer: 8
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +192,7 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.5684615
       - serializedVersion: 3
-        time: 0.8527634
+        time: 1
         value: 0
         inSlope: -0.06401811
         outSlope: -0.06401811
@@ -242,3 +243,19 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!58 &6532844247739490472
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2229134801931509098}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
