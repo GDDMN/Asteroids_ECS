@@ -50,6 +50,8 @@ namespace Asteroids.ECS.Systems
 
       modelComponent.ModelTransform = asteroidGO.transform;
       modelComponent.ModelTransform.position = GetPosition();
+      modelComponent.Collider2D = modelComponent.ModelTransform.gameObject.GetComponent<Collider2D>();
+      modelComponent.EntityReference = modelComponent.ModelTransform.gameObject.GetComponent<EntityReference>();
     }
 
     private Vector2 GetPosition()

@@ -34,6 +34,9 @@ namespace Asteroids.ECS.Systems
 
       modelComponent.ModelTransform = projectileGO.transform;
       modelComponent.ModelTransform.position = weaponComponent.ShootPoint.transform.position;
+      modelComponent.Collider2D = modelComponent.ModelTransform.gameObject.GetComponent<Collider2D>();
+      modelComponent.EntityReference = modelComponent.ModelTransform.gameObject.GetComponent<EntityReference>();
+      modelComponent.EntityReference.Entity = projectileEntity;
 
       projectileTag.Lifetime = _projectileLifetime;
     }

@@ -14,7 +14,10 @@ GameObject:
   - component: {fileID: 2229134801931509102}
   - component: {fileID: 2229134801931509103}
   - component: {fileID: 2229134801931509100}
+  - component: {fileID: -6977922840084150714}
   - component: {fileID: 6532844247739490472}
+  - component: {fileID: -7917296133371550086}
+  - component: {fileID: 6146611655975002696}
   m_Layer: 8
   m_Name: Projectile
   m_TagString: Untagged
@@ -116,6 +119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     ModelTransform: {fileID: 2229134801931509096}
+    Collider2D: {fileID: 0}
+    EntityReference: {fileID: 0}
 --- !u!114 &2229134801931509103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +248,18 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &-6977922840084150714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2229134801931509098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b0acce65d451c64eb3608d04f4c65af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!58 &6532844247739490472
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -259,3 +276,36 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!50 &-7917296133371550086
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2229134801931509098}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
+--- !u!114 &6146611655975002696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2229134801931509098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69a17362089d0d49956c7d556fff4e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

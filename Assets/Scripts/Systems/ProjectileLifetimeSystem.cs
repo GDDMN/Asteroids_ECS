@@ -32,6 +32,7 @@ namespace Asteroids.ECS.Systems
       entity.Del<ProjectileTag>();
       entity.Del<ModelComponent>();
       entity.Del<MovementComponent>();
+
       GameObject.Destroy(prefab);
     }
   }
