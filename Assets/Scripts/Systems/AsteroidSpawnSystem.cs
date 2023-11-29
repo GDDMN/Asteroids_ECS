@@ -12,8 +12,7 @@ namespace Asteroids.ECS.Systems
 
     private readonly float minSpeed = 1f;
     private readonly float maxSpeed = 1.4f;
-
-    private int AsteroidsCount = 0;
+    
     private int level = 0;
     public void Init()
     {
@@ -22,25 +21,26 @@ namespace Asteroids.ECS.Systems
 
     public void Run()
     {
-      if(AsteroidsCount == 0)
+      ref var asteroidSpawnComponent = ref spawner.Get1(1);
+      if (asteroidSpawnComponent.AsteroidsCount == 0)
       {
         level++;
 
         int numAsteroids = 2 + (2 * level);
         for (int i = 0; i < numAsteroids; i++)
-          SpawnAsteroid();
+          SpawnAsteroid(ref asteroidSpawnComponent);
       }
     }
 
-    private void SpawnAsteroid()
+    private void SpawnAsteroid(ref AsteroidsSpawnerComponent spawnComponent)
     {
-      AsteroidsCount++;
-      ref var asteroidSpawnComponent = ref spawner.Get1(1);
+      spawnComponent.AsteroidsCount++;
 
-      var asteroidGO = Object.Instantiate(asteroidSpawnComponent.AsteroidPrefab);
-      asteroidGO.transform.SetParent(asteroidSpawnComponent.AsteroidsPool);
+      var asteroidGO = Object.Instantiate(spawnComponent.AsteroidPrefab);
+      asteroidGO.transform.SetParent(spawnComponent.AsteroidsPool);
 
       var asteroidEntity = world.NewEntity();
+      asteroidEntity.Get<AsteroidTag>();
 
       ref var movementComponent = ref asteroidEntity.Get<MovementComponent>();
       ref var modelComponent = ref asteroidEntity.Get<ModelComponent>();
@@ -52,6 +52,7 @@ namespace Asteroids.ECS.Systems
       modelComponent.ModelTransform.position = GetPosition();
       modelComponent.Collider2D = modelComponent.ModelTransform.gameObject.GetComponent<Collider2D>();
       modelComponent.EntityReference = modelComponent.ModelTransform.gameObject.GetComponent<EntityReference>();
+      modelComponent.EntityReference.Entity = asteroidEntity;
     }
 
     private Vector2 GetPosition()

@@ -5,10 +5,11 @@ public class EcsTriggerChecker : MonoBehaviour
 {
   private void OnTriggerEnter2D(Collider2D collision)
   {
-    EcsEntity entity = collision.gameObject.GetComponent<EntityReference>().Entity;
+    EcsEntity collidedEntity = collision.gameObject.GetComponent<EntityReference>().Entity;
+    EcsEntity thisEntity = GetComponent<EntityReference>().Entity;
 
-    Destroy(collision.gameObject);
-    Destroy(this.gameObject);
+    collidedEntity.Get<DestroyComponent>();
+    thisEntity.Get<DestroyComponent>();
   }
 }
 

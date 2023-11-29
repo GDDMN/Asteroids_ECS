@@ -21,19 +21,9 @@ namespace Asteroids.ECS.Systems
         projectileTag.Lifetime -= Time.deltaTime;
         Debug.Log(projectileTag.Lifetime);
 
-        if(projectileTag.Lifetime <= 0f)
-          DestroyProjectile(entity, prefab);
+        if (projectileTag.Lifetime <= 0f)
+          entity.Get<DestroyComponent>();
       }
-    }
-
-    private void DestroyProjectile(EcsEntity entity, GameObject prefab)
-    {
-      Debug.Log("Destroy projectile");
-      entity.Del<ProjectileTag>();
-      entity.Del<ModelComponent>();
-      entity.Del<MovementComponent>();
-
-      GameObject.Destroy(prefab);
     }
   }
 

@@ -37,8 +37,8 @@ public class G : MonoBehaviour
             Add(new ConstantMoveSystem()).
             Add(new AsteroidSpawnSystem()).
             Add(new PlayerShootSetEvent()).
-            Add(new ShootSystem());
-
+            Add(new ShootSystem()).
+            Add(new DestroySystem());
   }
 
   private void AddOneFrame()
