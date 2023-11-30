@@ -19,12 +19,10 @@ namespace Asteroids.ECS.Systems
         GameObject prefab = modelComponent.ModelTransform.gameObject;
 
         projectileTag.Lifetime -= Time.deltaTime;
-        Debug.Log(projectileTag.Lifetime);
 
         if (projectileTag.Lifetime <= 0f)
           entity.Get<DestroyComponent>();
       }
     }
   }
-
 }

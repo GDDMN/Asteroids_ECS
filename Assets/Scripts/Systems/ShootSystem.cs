@@ -6,7 +6,7 @@ namespace Asteroids.ECS.Systems
   sealed class ShootSystem : IEcsRunSystem
   {
     private readonly EcsWorld world = null;
-    private readonly EcsFilter<WeaponComponent, ShootEvent> shootFilter = null;
+    private readonly EcsFilter<WeaponComponent, ShootEvent, PlayerTag> shootFilter = null;
 
     private readonly float _projectileLifetime = 1f;
 
@@ -14,7 +14,14 @@ namespace Asteroids.ECS.Systems
     {
       foreach(var item in shootFilter)
       {
-        ref var weaponComponent = ref shootFilter.Get1(item);
+        ref EcsEntity entity = ref shootFilter.GetEntity(item);
+        
+        if (!entity.IsAlive())
+          return;
+
+        ref var weaponComponent = ref entity.Get<WeaponComponent>();
+        Debug.Log(entity + ": " + weaponComponent.ShootPoint);
+
         SpawnProjectile(weaponComponent);
       }
     }
@@ -27,7 +34,7 @@ namespace Asteroids.ECS.Systems
 
       ref var movementComponent = ref projectileEntity.Get<MovementComponent>();
       ref var modelComponent = ref projectileEntity.Get<ModelComponent>();
-      ref var projectileTag = ref projectileEntity.Get<ProjectileTag>();
+      ref var projectileTag = ref projectileEntity .Get<ProjectileTag>();
 
       movementComponent.Direction = weaponComponent.ShootPoint.transform.up;
       movementComponent.Speed = 10;

@@ -3,35 +3,36 @@ using Leopotam.Ecs;
 
 namespace Asteroids.ECS.Systems
 {
-  sealed class DestroySystem : IEcsRunSystem
+  sealed class PlayerDestroySystem : IEcsRunSystem
   {
-    private readonly EcsFilter<DestroyComponent, ModelComponent> _destroyFilter = null;
-    private readonly EcsFilter<AsteroidsSpawnerComponent> _spawnFilter = null;
+    private readonly EcsFilter<DestroyComponent, PlayerTag> _destroyFilter = null;
+    private readonly EcsFilter<ShipSpawnerComponent> _playerSpawnersFilter = null;
     public void Run()
     {
-      ref AsteroidsSpawnerComponent spawnComponent = ref _spawnFilter.Get1(1);
-
-      foreach(var item in _destroyFilter)
+      foreach (var item in _destroyFilter)
       {
-        ref ModelComponent modelComponent = ref _destroyFilter.Get2(item);
+        ref EcsEntity entity = ref _destroyFilter.GetEntity(item);
+        ModelComponent model = entity.Get<ModelComponent>();
 
-        GameObject prefab = modelComponent.ModelTransform.gameObject;
-        EcsEntity entity = modelComponent.EntityReference.Entity;
+        GameObject prefab = model.ModelTransform.gameObject;
 
-        if (entity.Has<AsteroidTag>())
-          spawnComponent.AsteroidsCount -= 1;
-
-        DestroyObject(entity, prefab);
+        DestroyObject(ref entity, prefab);
+        InitSpawnerWork();
       }
     }
 
-    private void DestroyObject(EcsEntity entity, GameObject prefab)
+    private void DestroyObject(ref EcsEntity entity, GameObject prefab)
     {
-      Debug.Log("Destroy object");
-      entity.Del<ModelComponent>();
-      entity.Del<MovementComponent>();
-      
+      entity.Destroy();
       GameObject.Destroy(prefab);
+    }
+
+    private void InitSpawnerWork()
+    {
+      foreach(var item in _playerSpawnersFilter)
+      {
+        _playerSpawnersFilter.GetEntity(item).Get<SpawnShipEvent>();
+      }
     }
   }
 

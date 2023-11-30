@@ -15,6 +15,8 @@ namespace Asteroids.ECS.Systems
         ref RotationComponent rotationComponent = ref rotatableObjects.Get1(item);
         ref ModelComponent modelComponent = ref rotatableObjects.Get2(item);
 
+        if (modelComponent.ModelTransform == null)
+          return;
         
         float angle = rotationComponent.Angle;
         float rotationSpeed = rotationComponent.RotationSpeed;

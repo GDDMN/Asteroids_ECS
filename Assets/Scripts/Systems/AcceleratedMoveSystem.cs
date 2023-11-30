@@ -18,6 +18,9 @@ namespace Asteroids.ECS.Systems
         ref PlayerMovementComponent movementComponent = ref ships.Get2(item);
         ref AccelerateComponent accelerateComponent = ref ships.Get3(item);
 
+        if (modelComponent.ModelTransform == null) 
+          return;
+        
         ref Transform transform = ref modelComponent.ModelTransform;
 
         ref Vector2 direction = ref movementComponent.Direction;

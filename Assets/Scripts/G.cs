@@ -29,7 +29,8 @@ public class G : MonoBehaviour
 
   private void AddSystems()
   {
-    systems.Add(new PlayerInputSystem()).
+    systems.Add(new ShipSpawnSystem()).
+            Add(new PlayerInputSystem()).
             Add(new AcceleratedMoveSystem()).
             Add(new RotationSystem()).
             Add(new WrappingSystem()).
@@ -38,7 +39,7 @@ public class G : MonoBehaviour
             Add(new AsteroidSpawnSystem()).
             Add(new PlayerShootSetEvent()).
             Add(new ShootSystem()).
-            Add(new DestroySystem());
+            Add(new PlayerDestroySystem());            
   }
 
   private void AddOneFrame()

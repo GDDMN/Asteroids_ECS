@@ -17,6 +17,11 @@ namespace Asteroids.ECS.Systems
 
       foreach(var item in _playerFilter)
       {
+        ref EcsEntity entity = ref _playerFilter.GetEntity(item);
+
+        if (!entity.IsAlive())
+          return;
+
         ref RotationComponent rotationComponent = ref _playerFilter.Get2(item);
         ref PlayerMovementComponent movementComponent = ref _playerFilter.Get3(item);
 

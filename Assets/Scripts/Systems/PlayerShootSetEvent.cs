@@ -3,7 +3,7 @@ using Leopotam.Ecs;
 
 namespace Asteroids.ECS.Systems
 {
-  sealed class PlayerShootSetEvent : IEcsRunSystem
+  internal sealed class PlayerShootSetEvent : IEcsRunSystem
   {
     private readonly EcsFilter<WeaponComponent> playerFilter = null;
     public void Run()
@@ -17,5 +17,4 @@ namespace Asteroids.ECS.Systems
       }
     }
   }
-
 }
