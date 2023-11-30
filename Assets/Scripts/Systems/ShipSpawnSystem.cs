@@ -20,11 +20,14 @@ namespace Asteroids.ECS.Systems
 
         ref ShipSpawnerComponent spawnComponent = ref spawnEntity.Get<ShipSpawnerComponent>();
 
-        if (spawnComponent.LivesCount <= 0)
+        if (G.Instance.Currents.Lifes.Value <= 0)
+        {
+          G.Instance.Currents.GameOver.Value = true;
           return;
+        }
 
         InitShip(spawnComponent);
-        spawnComponent.LivesCount--;
+        G.Instance.Currents.Lifes.Value--;
       }
     }
 
@@ -90,6 +93,7 @@ namespace Asteroids.ECS.Systems
       weaponComponent.ShootPoint = shipGO.transform;
       weaponComponent.Projectile = Resources.Load<GameObject>("Projectile");
     }
+
 
   }
 }

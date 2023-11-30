@@ -33,6 +33,7 @@ namespace Asteroids.ECS.Systems
       {
         ref var asteroidsSpawnComponent = ref _asteroidSpawnersFilter.Get1(item);
         asteroidsSpawnComponent.AsteroidsCount--;
+        G.Instance.Currents.Scores.Value++;
       }
     }
   }
