@@ -3,7 +3,7 @@ using Leopotam.Ecs;
 using Voody.UniLeo;
 using Asteroids.ECS.Systems;
 
-public class G : MonoBehaviour
+public class EcsGameStartup : MonoBehaviour
 {
   private EcsWorld world;
   private EcsSystems systems;
@@ -39,7 +39,9 @@ public class G : MonoBehaviour
             Add(new AsteroidSpawnSystem()).
             Add(new PlayerShootSetEvent()).
             Add(new ShootSystem()).
-            Add(new PlayerDestroySystem());            
+            Add(new PlayerDestroySystem()).
+            Add(new AsteroidsDestroySystem()).
+            Add(new ProjectileDestroySystem());
   }
 
   private void AddOneFrame()

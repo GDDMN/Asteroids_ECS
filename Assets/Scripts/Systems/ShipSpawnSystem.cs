@@ -15,6 +15,7 @@ namespace Asteroids.ECS.Systems
       foreach(var item in spawnFilter)
       {
         ref EcsEntity spawnEntity = ref spawnFilter.GetEntity(item);
+
         spawnEntity.Del<SpawnShipEvent>();
 
         ref ShipSpawnerComponent spawnComponent = ref spawnEntity.Get<ShipSpawnerComponent>();
@@ -23,6 +24,7 @@ namespace Asteroids.ECS.Systems
           return;
 
         InitShip(spawnComponent);
+        spawnComponent.LivesCount--;
       }
     }
 
@@ -88,5 +90,6 @@ namespace Asteroids.ECS.Systems
       weaponComponent.ShootPoint = shipGO.transform;
       weaponComponent.Projectile = Resources.Load<GameObject>("Projectile");
     }
+
   }
 }

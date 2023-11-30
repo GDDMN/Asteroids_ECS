@@ -3,10 +3,10 @@ using Leopotam.Ecs;
 
 namespace Asteroids.ECS.Systems
 {
-  sealed class PlayerDestroySystem : IEcsRunSystem
+  sealed public class AsteroidsDestroySystem : IEcsRunSystem
   {
-    private readonly EcsFilter<DestroyComponent, PlayerTag> _destroyFilter = null;
-    private readonly EcsFilter<ShipSpawnerComponent> _playerSpawnersFilter = null;
+    private readonly EcsFilter<DestroyComponent, AsteroidTag> _destroyFilter = null;
+    private readonly EcsFilter<AsteroidsSpawnerComponent> _asteroidSpawnersFilter = null;
     public void Run()
     {
       foreach (var item in _destroyFilter)
@@ -17,7 +17,7 @@ namespace Asteroids.ECS.Systems
         GameObject prefab = model.ModelTransform.gameObject;
 
         DestroyObject(ref entity, prefab);
-        InitSpawnerWork();
+        DecrimentAsteroidsCount();
       }
     }
 
@@ -27,14 +27,16 @@ namespace Asteroids.ECS.Systems
       GameObject.Destroy(prefab);
     }
 
-    private void InitSpawnerWork()
+    private void DecrimentAsteroidsCount()
     {
-      foreach(var item in _playerSpawnersFilter)
+      foreach(var item in _asteroidSpawnersFilter)
       {
-        _playerSpawnersFilter.GetEntity(item).Get<SpawnShipEvent>();
+        ref var asteroidsSpawnComponent = ref _asteroidSpawnersFilter.Get1(item);
+        asteroidsSpawnComponent.AsteroidsCount--;
       }
     }
   }
+
 
 
 }
